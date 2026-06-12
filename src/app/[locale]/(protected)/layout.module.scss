@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  height: 100vh;
+  padding: 1rem;
+  gap: 1.5rem;
+  background-color: #f3f4f6;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.content {
+  flex: 1;
+  background-color: #ffffff;
+  border-radius: 1.5rem;
+
+  padding: 2rem;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  box-sizing: border-box;
+}
+
+.sidebar {
+  border-radius: 1.5rem;
+  overflow: hidden;
+}

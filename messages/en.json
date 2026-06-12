@@ -1,0 +1,15 @@
+{
+	"sidebar": {
+		"items": {
+			"home": "Home",
+			"dashboard": "Dashboard",
+			"map": "Map",
+			"incidents": "Incidents",
+			"analytics": "Analytics",
+			"users": "Users",
+			"reports": "Reports",
+			"settings": "Settings",
+			"share": "Share"
+		}
+	}
+}

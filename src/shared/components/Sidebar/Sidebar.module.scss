@@ -1,0 +1,244 @@
+$primary: #eeb702;
+$primary-soft: rgba(238, 183, 2, 0.18);
+$primary-hover: rgba(238, 183, 2, 0.28);
+$hover-bg-open: #fff7e1;
+$active-bg-open: #fff1c2;
+
+$text: #1f1f1f;
+$radius: 14px;
+
+$icon-size: 42px;
+$icon-svg: 20px;
+
+%navItemBase {
+  width: $icon-size;
+  height: $icon-size;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: $radius;
+
+  color: $text;
+  text-decoration: none;
+
+  transition: 0.2s ease;
+}
+
+%iconBase {
+  width: $icon-svg;
+  height: $icon-svg;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.sidebar {
+  width: 92px;
+  height: 100%;
+  background: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 14px 0 18px;
+
+  border-radius: 28px;
+
+  justify-content: flex-start;
+  gap: 18px;
+
+  transition:
+    width 0.24s ease,
+    background-color 0.2s ease;
+}
+
+.collapsed {
+  width: 92px;
+}
+
+.expanded {
+  width: 250px;
+}
+
+.top {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  min-height: 84px;
+}
+
+.avatarWrapper {
+  width: 50px;
+  height: 50px;
+
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+
+  overflow: hidden;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toggleButton {
+  width: 34px;
+  height: 34px;
+
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  border-radius: 50%;
+
+  background: white;
+  border: 2px solid rgba(25, 25, 25, 0.15);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s ease;
+}
+
+.toggleButton svg {
+  width: 18px;
+  height: 18px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+}
+
+.toggleButton:hover {
+  color: $primary;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  align-items: center;
+  justify-content: flex-start;
+
+  flex: 1;
+  margin-top: 6px;
+}
+
+.navItem {
+  @extend %navItemBase;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon svg {
+  @extend %iconBase;
+}
+
+.navItem:hover {
+  background: $primary-hover;
+  color: $primary;
+}
+
+.active {
+  background: $primary-soft;
+  color: $primary;
+  pointer-events: none;
+  font-weight: 600;
+}
+
+.label {
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transform: translateX(-8px);
+  transition: all 0.2s ease;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  padding-bottom: 8px;
+}
+
+.expanded {
+  .toggleButton {
+    right: -14px;
+  }
+
+  .navItem {
+    width: 210px;
+    min-height: 44px;
+
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 0 16px;
+
+    border-radius: 14px;
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+  }
+
+  .label {
+    width: auto;
+    opacity: 1;
+    transform: translateX(0);
+    font-size: 0.9rem;
+  }
+
+  .navItem:hover {
+    background: $hover-bg-open;
+    color: $primary;
+  }
+
+  .active {
+    background: $active-bg-open;
+    color: $primary;
+  }
+}
+
+@media (max-width: 900px) {
+  .collapsed {
+    width: 86px;
+  }
+
+  .expanded {
+    width: 220px;
+
+    .navItem {
+      width: 186px;
+    }
+  }
+}
