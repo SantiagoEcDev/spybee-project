@@ -1,16 +1,19 @@
 import Sidebar from "@/shared/components/Sidebar/Sidebar";
+import Breadcrumb from "@/shared/components/Breadcrumb/Breadcrumb";
 import styles from "./layout.module.scss";
 
-const ProtectedLayout = ({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
+const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className={styles.container}>
-      <Sidebar />
+    <div className={styles.wrapper}>
+      <div className={styles.breadcrumb}>
+        <Breadcrumb />
+      </div>
 
-      <main className={styles.content}>{children}</main>
+      <div className={styles.container}>
+        <Sidebar />
+
+        <main className={styles.content}>{children}</main>
+      </div>
     </div>
   );
 };

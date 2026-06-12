@@ -1,34 +1,22 @@
-$primary: #eeb702;
-$primary-soft: rgba(238, 183, 2, 0.18);
-$primary-hover: rgba(238, 183, 2, 0.28);
-$hover-bg-open: #fff7e1;
-$active-bg-open: #fff1c2;
-
-$text: #1f1f1f;
-$radius: 14px;
-
-$icon-size: 42px;
-$icon-svg: 20px;
-
 %navItemBase {
-  width: $icon-size;
-  height: $icon-size;
+  width: var(--icon-size);
+  height: var(--icon-size);
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: $radius;
+  border-radius: var(--radius);
 
-  color: $text;
+  color: var(--text);
   text-decoration: none;
 
   transition: 0.2s ease;
 }
 
 %iconBase {
-  width: $icon-svg;
-  height: $icon-svg;
+  width: var(--icon-svg);
+  height: var(--icon-svg);
 
   display: flex;
   align-items: center;
@@ -125,7 +113,7 @@ $icon-svg: 20px;
 }
 
 .toggleButton:hover {
-  color: $primary;
+  color: var(--primary);
 }
 
 .nav {
@@ -158,13 +146,13 @@ $icon-svg: 20px;
 }
 
 .navItem:hover {
-  background: $primary-hover;
-  color: $primary;
+  background: var(--primary-hover);
+  color: var(--primary);
 }
 
 .active {
-  background: $primary-soft;
-  color: $primary;
+  background: var(--primary-soft);
+  color: var(--primary);
   pointer-events: none;
   font-weight: 600;
 }
@@ -219,13 +207,13 @@ $icon-svg: 20px;
   }
 
   .navItem:hover {
-    background: $hover-bg-open;
-    color: $primary;
+    background: var(--hover-bg-open);
+    color: var(--primary);
   }
 
   .active {
-    background: $active-bg-open;
-    color: $primary;
+    background: var(--active-bg-open);
+    color: var(--primary);
   }
 }
 

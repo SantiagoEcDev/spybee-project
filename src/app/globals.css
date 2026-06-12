@@ -7,3 +7,17 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f5f5f5;
 }
+
+:root {
+  --primary: #eeb702;
+  --primary-soft: rgba(238, 183, 2, 0.18);
+  --primary-hover: rgba(238, 183, 2, 0.28);
+  --hover-bg-open: #fff7e1;
+  --active-bg-open: #fff1c2;
+
+  --text: #1f1f1f;
+  --radius: 14px;
+
+  --icon-size: 42px;
+  --icon-svg: 20px;
+}

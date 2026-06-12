@@ -1,15 +1,18 @@
 {
-	"sidebar": {
-		"items": {
-			"home": "Inicio",
-			"dashboard": "Inicio",
-			"map": "Mapa",
-			"incidents": "Incidentes",
-			"analytics": "Analítica",
-			"users": "Usuarios",
-			"reports": "Reportes",
-			"settings": "Configuración",
-			"share": "Compartir"
-		}
-	}
+  "common": {
+    "home": "Inicio"
+  },
+  "sidebar": {
+    "items": {
+      "home": "Inicio",
+      "dashboard": "Inicio",
+      "map": "Mapa",
+      "incidents": "Incidentes",
+      "analytics": "Analítica",
+      "users": "Usuarios",
+      "reports": "Reportes",
+      "settings": "Configuración",
+      "share": "Compartir"
+    }
+  }
 }
