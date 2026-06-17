@@ -1,6 +1,7 @@
 "use client";
 
-import styles from "./styles/Modal.module.scss";
+import styles from "./Modal.module.scss";
+import { IoClose } from "react-icons/io5";
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,7 +15,11 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        {children}
+        <button className={styles.closeButton} onClick={onClose}>
+          <IoClose size={22} />
+        </button>
+
+        <div className={styles.content}>{children}</div>
       </div>
     </div>
   );

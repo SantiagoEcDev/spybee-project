@@ -1,23 +1,37 @@
 import { z } from "zod";
 
-export const incidentFormSchema = z.object({
-  title: z
+export const incidentSchema = z.object({
+  title: z.string().min(5, "El título debe tener al menos 5 caracteres"),
+
+  description: z
     .string()
-    .min(1, "El título es requerido")
-    .max(120, "Máximo 120 caracteres"),
-  description: z.string().min(1, "La descripción es requerida"),
-  dueDate: z.string().nullable().default(null),
-  category: z.string().min(1, "La categoría es requerida"),
-  priority: z.enum(["low", "medium", "high", "critical"]).default("medium"),
-  tags: z.array(z.string()).default([]),
-  assignees: z.array(z.string()).min(1, "Asigna al menos un responsable"),
-  observers: z.array(z.string()).default([]),
-  lat: z.string().optional(),
-  lng: z.string().optional(),
-  locationDescription: z.string().optional(),
-  photos: z.array(z.instanceof(File)).default([]),
-  videos: z.array(z.instanceof(File)).default([]),
-  documents: z.array(z.instanceof(File)).default([]),
+    .min(10, "La descripción debe tener al menos 10 caracteres"),
+
+  dueDate: z.date({
+    message: "La fecha de vencimiento es obligatoria",
+  }),
+
+  category: z.string().min(1, "La categoría es obligatoria"),
+  
+  priority: z.enum(["low", "medium", "high"], {
+    message: "La prioridad es obligatoria",
+  }),
+
+  tags: z.array(z.string()).optional(),
+
+  assignees: z.array(z.string()).optional(),
+
+  observers: z.array(z.string()).optional(),
+
+  coordinates: z.object({
+    lat: z.string().min(1, "La latitud es obligatoria"),
+
+    lng: z.string().min(1, "La longitud es obligatoria"),
+  }),
+
+  locationDetails: z.string().optional(),
+
+  files: z.array(z.string()).optional(),
 });
 
-export type IncidentFormValues = z.infer<typeof incidentFormSchema>;
+export type IncidentFormData = z.infer<typeof incidentSchema>;

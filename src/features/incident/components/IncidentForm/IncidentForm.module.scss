@@ -1,0 +1,63 @@
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.doubleField {
+  grid-column: span 2;
+}
+
+.previewMap {
+  height: 250px;
+  border-radius: 12px;
+  grid-column: span 2;
+  overflow: hidden;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.error {
+  font-size: 0.8rem;
+  color: #dc2626;
+}
+
+.submitButton {
+  align-self: flex-end;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+@media (max-width: 768px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .fullWidth {
+    grid-column: auto;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}

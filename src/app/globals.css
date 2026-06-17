@@ -1,19 +1,17 @@
-@import "tailwindcss";
-
 * {
   box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
 }
 
 :root {
   --primary: #eeb702;
   --primary-soft: rgba(238, 183, 2, 0.18);
   --primary-hover: rgba(238, 183, 2, 0.28);
+
+  --placeholder: #999;
+
+  --secondary: #1f1f1f;
+  --secondary-hover: rgba(31, 31, 31, 0.08);
+
   --hover-bg-open: #fff7e1;
   --active-bg-open: #fff1c2;
 
@@ -22,23 +20,80 @@ body {
 
   --icon-size: 42px;
   --icon-svg: 20px;
+}
 
-  --background: #ffffff;
-  --foreground: #1f1f1f;
-  --card: #ffffff;
-  --card-foreground: #1f1f1f;
-  --popover: #ffffff;
-  --popover-foreground: #1f1f1f;
-  --secondary: #f5f5f5;
-  --secondary-foreground: #1f1f1f;
-  --muted: #f5f5f5;
-  --muted-foreground: #6b6b6b;
-  --accent: #fff7e1;
-  --accent-foreground: #1f1f1f;
-  --destructive: #ef4444;
-  --border: #e5e5e5;
-  --input: #e5e5e5;
-  --ring: rgba(238, 183, 2, 0.4);
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 1rem;
+  background-color: #f5f5f5;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+form input,
+form textarea,
+form select {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: var(--text);
+  background-color: #fff;
+}
+
+form input::placeholder,
+form textarea::placeholder {
+  color: var(--placeholder);
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  outline: none;
+  border: 2px solid var(--primary);
+}
+
+form textarea {
+  min-height: 40px;
+  max-height: 100px;
+  resize: vertical;
+}
+
+.required-label::after {
+  content: " *";
+  color: #e53e3e;
+  margin-left: 4px;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+  min-height: 40px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font: inherit;
+  color: var(--text);
+  background-color: #fff;
+}
+
+.react-datepicker__input-container input::placeholder {
+  color: var(--placeholder);
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+  border: 2px solid var(--primary);
 }
 
 @layer base {

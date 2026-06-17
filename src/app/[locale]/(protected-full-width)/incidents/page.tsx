@@ -2,8 +2,8 @@
 
 import MapboxContainer from "@/features/incident/components/MapboxContainer/MapboxContainer";
 
-const MapPage = () => {
+const IncidentsPage = () => {
   return <MapboxContainer />;
 };
 
-export default MapPage;
+export default IncidentsPage;

@@ -1,4 +1,4 @@
-import Sidebar from "@/shared/components/Sidebar/Sidebar";
+import Sidebar from "@/shared/layout/Sidebar/Sidebar";
 import Breadcrumb from "@/shared/components/Breadcrumb/Breadcrumb";
 import styles from "./layout.module.scss";
 

@@ -9,8 +9,8 @@ type IncidentStore = {
 
   fetchIncidents: () => Promise<void>;
   clearIncidents: () => void;
+  addIncident: (incident: Incident) => void;
 };
-
 
 export const useIncidentStore = create<IncidentStore>((set) => ({
   incidents: [],
@@ -23,8 +23,8 @@ export const useIncidentStore = create<IncidentStore>((set) => ({
     try {
       const res = await fetch(API_URL, {
         headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-        }
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
+        },
       });
 
       if (!res.ok) {
@@ -40,13 +40,18 @@ export const useIncidentStore = create<IncidentStore>((set) => ({
     } catch (error) {
       set({
         loading: false,
-        error:
-          error instanceof Error ? error.message : "Unknown error",
+        error: error instanceof Error ? error.message : "Unknown error",
       });
     }
   },
 
   clearIncidents: () => {
     set({ incidents: [] });
+  },
+
+  addIncident: (incident: Incident) => {
+    set((state) => ({
+      incidents: [...state.incidents, incident],
+    }));
   },
 }));
