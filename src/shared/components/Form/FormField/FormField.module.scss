@@ -1,0 +1,21 @@
+.formField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  margin-bottom: 6px;
+}
+.error {
+  margin-top: 4px;
+  color: red;
+  font-size: 12px;
+}
+
+.required::after {
+  content: "*";
+  color: #e53e3e;
+  font-weight: bold;
+  margin-left: 4px;
+}
