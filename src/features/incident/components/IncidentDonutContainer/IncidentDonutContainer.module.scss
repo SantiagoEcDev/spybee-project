@@ -1,0 +1,11 @@
+.container {
+  display: grid;
+  margin-top: 16px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
