@@ -1,4 +1,5 @@
 import IncidentStatusContainer from "@/features/dashboard/components/IncidentStatusContainer/IncidentStatusContainer";
+import GeoHeatmapSection from "@/features/incident/components/GeoHeatMapSection/GeoHeatMapSection";
 import IncidentDonutContainer from "@/features/incident/components/IncidentDonutContainer/IncidentDonutContainer";
 import RiskIndicatorsContainer from "@/features/incident/components/RiskIndicatorsContainer/RiskIndicatorsContainer";
 import TrendChartContainer from "@/features/incident/components/TrendChartContainer/TrendChartContainer";
@@ -9,7 +10,8 @@ const page = () => {
       <IncidentStatusContainer />
       <IncidentDonutContainer />
       <TrendChartContainer />
-      <RiskIndicatorsContainer/>
+      <RiskIndicatorsContainer />
+      <GeoHeatmapSection />
     </>
   );
 };
