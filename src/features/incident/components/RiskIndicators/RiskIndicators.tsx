@@ -80,7 +80,7 @@ const RiskIndicators = () => {
           (i.priority === "high" ||
             (i.dueDate && new Date(i.dueDate) <= sevenDaysLater)),
       ),
-    [incidents],
+    [incidents, sevenDaysLater],
   );
 
   const totalPages = Math.ceil(critical.length / PAGE_SIZE);
