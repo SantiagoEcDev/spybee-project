@@ -87,68 +87,90 @@ const GeoHeatmap = ({ selectedDate }: GeoHeatmapProps) => {
     const map = mapRef.current;
     if (!map || !mapLoaded) return;
 
-    const geojson = buildGeoJSON(filtered);
-    const existing = map.getSource("incidents-heat") as
-      | mapboxgl.GeoJSONSource
-      | undefined;
+    const run = () => {
+      if (!map.isStyleLoaded()) return;
 
-    if (existing) {
-      existing.setData(geojson);
-      return;
+      const geojson = buildGeoJSON(filtered);
+
+      const existing = map.getSource("incidents-heat") as
+        | mapboxgl.GeoJSONSource
+        | undefined;
+
+      if (existing) {
+        existing.setData(geojson);
+        return;
+      }
+
+      map.addSource("incidents-heat", {
+        type: "geojson",
+        data: geojson,
+      });
+
+      map.addLayer({
+        id: "incidents-heatmap",
+        type: "heatmap",
+        source: "incidents-heat",
+        paint: {
+          "heatmap-weight": ["get", "weight"],
+          "heatmap-intensity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            8,
+            1,
+            16,
+            4,
+          ],
+          "heatmap-color": [
+            "interpolate",
+            ["linear"],
+            ["heatmap-density"],
+            0,
+            "rgba(0,0,0,0)",
+            0.1,
+            "rgba(255, 230, 0, 0.9)",
+            0.4,
+            "rgba(255, 140, 0, 1)",
+            0.7,
+            "rgba(220, 30, 0, 1)",
+            1,
+            "rgba(100, 0, 30, 1)",
+          ],
+          "heatmap-radius": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            8,
+            30,
+            14,
+            60,
+            16,
+            80,
+          ],
+          "heatmap-opacity": 0.95,
+        },
+      });
+
+      map.addLayer({
+        id: "incidents-points",
+        type: "circle",
+        source: "incidents-heat",
+        minzoom: 14,
+        paint: {
+          "circle-radius": ["interpolate", ["linear"], ["zoom"], 14, 7, 18, 16],
+          "circle-color": "#ff3300",
+          "circle-stroke-width": 2.5,
+          "circle-stroke-color": "#ffffff",
+          "circle-opacity": ["interpolate", ["linear"], ["zoom"], 14, 0, 15, 1],
+        },
+      });
+    };
+
+    if (map.isStyleLoaded()) {
+      run();
+    } else {
+      map.once("idle", run);
     }
-
-    map.addSource("incidents-heat", { type: "geojson", data: geojson });
-
-    map.addLayer({
-      id: "incidents-heatmap",
-      type: "heatmap",
-      source: "incidents-heat",
-      paint: {
-        "heatmap-weight": ["get", "weight"],
-        "heatmap-intensity": ["interpolate", ["linear"], ["zoom"], 8, 1, 16, 4],
-        "heatmap-color": [
-          "interpolate",
-          ["linear"],
-          ["heatmap-density"],
-          0,
-          "rgba(0,0,0,0)",
-          0.1,
-          "rgba(255, 230, 0, 0.9)",
-          0.4,
-          "rgba(255, 140, 0, 1)",
-          0.7,
-          "rgba(220, 30, 0, 1)",
-          1,
-          "rgba(100, 0, 30, 1)",
-        ],
-        "heatmap-radius": [
-          "interpolate",
-          ["linear"],
-          ["zoom"],
-          8,
-          30,
-          14,
-          60,
-          16,
-          80,
-        ],
-        "heatmap-opacity": 0.95,
-      },
-    });
-
-    map.addLayer({
-      id: "incidents-points",
-      type: "circle",
-      source: "incidents-heat",
-      minzoom: 14,
-      paint: {
-        "circle-radius": ["interpolate", ["linear"], ["zoom"], 14, 7, 18, 16],
-        "circle-color": "#ff3300",
-        "circle-stroke-width": 2.5,
-        "circle-stroke-color": "#ffffff",
-        "circle-opacity": ["interpolate", ["linear"], ["zoom"], 14, 0, 15, 1],
-      },
-    });
   }, [mapLoaded, filtered]);
 
   const dateLabel = selectedDate
