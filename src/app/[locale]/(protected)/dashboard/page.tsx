@@ -1,9 +1,11 @@
-
+import IncidentStatusContainer from "@/features/dashboard/components/IncidentStatusContainer/IncidentStatusContainer";
 
 const page = () => {
   return (
-    <div>page</div>
-  )
-}
+    <>
+      <IncidentStatusContainer />
+    </>
+  );
+};
 
-export default page
+export default page;

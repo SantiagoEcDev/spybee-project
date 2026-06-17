@@ -1,24 +1,31 @@
 import { create } from "zustand";
-import { Incident } from "../types/incident.types";
 import { API_URL } from "@/config/api";
+import { Incident } from "../types/incident.types";
 
 type IncidentStore = {
-  incidents: Incident[];
   loading: boolean;
+  success: boolean;
   error: string | null;
+  incidents: Incident[];
 
   fetchIncidents: () => Promise<void>;
-  clearIncidents: () => void;
-  addIncident: (incident: Incident) => void;
+};
+
+const initialState = {
+  loading: false,
+  success: false,
+  error: null,
+  incidents: [],
 };
 
 export const useIncidentStore = create<IncidentStore>((set) => ({
-  incidents: [],
-  loading: false,
-  error: null,
+  ...initialState,
 
   fetchIncidents: async () => {
-    set({ loading: true, error: null });
+    set({
+      ...initialState,
+      loading: true,
+    });
 
     try {
       const res = await fetch(API_URL, {
@@ -34,24 +41,17 @@ export const useIncidentStore = create<IncidentStore>((set) => ({
       const data: Incident[] = await res.json();
 
       set({
+        ...initialState,
+        success: true,
         incidents: data,
-        loading: false,
       });
     } catch (error) {
       set({
-        loading: false,
+        ...initialState,
         error: error instanceof Error ? error.message : "Unknown error",
       });
     }
   },
-
-  clearIncidents: () => {
-    set({ incidents: [] });
-  },
-
-  addIncident: (incident: Incident) => {
-    set((state) => ({
-      incidents: [...state.incidents, incident],
-    }));
-  },
 }));
+
+useIncidentStore.getState().fetchIncidents();
