@@ -96,6 +96,10 @@ form textarea {
   border: 2px solid var(--primary);
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

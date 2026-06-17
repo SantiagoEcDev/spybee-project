@@ -5,6 +5,7 @@ import { API_URL } from "@/config/api";
 type IncidentStore = {
   incidents: Incident[];
   loading: boolean;
+  success: boolean;
   error: string | null;
 
   fetchIncidents: () => Promise<void>;
@@ -12,13 +13,23 @@ type IncidentStore = {
   addIncident: (incident: Incident) => void;
 };
 
-export const useIncidentStore = create<IncidentStore>((set) => ({
+export const useIncidentStore = create<IncidentStore>((set, get) => ({
   incidents: [],
   loading: false,
+  success: false,
   error: null,
 
   fetchIncidents: async () => {
-    set({ loading: true, error: null });
+    const { loading, incidents } = get();
+
+    if (loading || incidents.length > 0) {
+      return;
+    }
+
+    set({
+      loading: true,
+      error: null,
+    });
 
     try {
       const res = await fetch(API_URL, {
@@ -36,17 +47,22 @@ export const useIncidentStore = create<IncidentStore>((set) => ({
       set({
         incidents: data,
         loading: false,
+        success: true,
+        error: null,
       });
     } catch (error) {
       set({
         loading: false,
+        success: false,
         error: error instanceof Error ? error.message : "Unknown error",
       });
     }
   },
 
   clearIncidents: () => {
-    set({ incidents: [] });
+    set({
+      incidents: [],
+    });
   },
 
   addIncident: (incident: Incident) => {
@@ -55,3 +71,7 @@ export const useIncidentStore = create<IncidentStore>((set) => ({
     }));
   },
 }));
+
+if (typeof window !== "undefined") {
+  useIncidentStore.getState().fetchIncidents();
+}
