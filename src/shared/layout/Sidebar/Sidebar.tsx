@@ -23,6 +23,7 @@ import styles from "./Sidebar.module.scss";
 type NavigationItem = {
   key: string;
   href:
+    | "/"
     | "/home"
     | "/dashboard"
     | "/incidents"
