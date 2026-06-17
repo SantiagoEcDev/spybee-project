@@ -2,7 +2,7 @@ import Sidebar from "@/shared/layout/Sidebar/Sidebar";
 import Breadcrumb from "@/shared/components/Breadcrumb/Breadcrumb";
 import styles from "./layout.module.scss";
 
-const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
+const FullWidthLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.breadcrumb}>
@@ -18,4 +18,4 @@ const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ProtectedLayout;
+export default FullWidthLayout;

@@ -9,7 +9,6 @@ import {
   FiHome,
   FiPieChart,
   FiMapPin,
-  FiAlertTriangle,
   FiBarChart2,
   FiUsers,
   FiFileText,
@@ -26,7 +25,6 @@ type NavigationItem = {
   href:
     | "/home"
     | "/dashboard"
-    | "/map"
     | "/incidents"
     | "/analytics"
     | "/users"
@@ -40,11 +38,10 @@ type NavigationItem = {
 const navigationItems: NavigationItem[] = [
   { key: "home", href: "/home", icon: FiHome, section: "main" },
   { key: "dashboard", href: "/dashboard", icon: FiPieChart, section: "main" },
-  { key: "map", href: "/map", icon: FiMapPin, section: "main" },
   {
     key: "incidents",
     href: "/incidents",
-    icon: FiAlertTriangle,
+    icon: FiMapPin,
     section: "main",
   },
   {
